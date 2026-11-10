@@ -1,0 +1,93 @@
+<div id="app">
+  <header class="top">
+    <div class="brand">
+      <h1>בראשית</h1>
+      <div class="dayline"><span id="dayName">תוהו ובוהו</span><span id="dayDesc">אותיות בלי סדר</span></div>
+    </div>
+    <div class="named" id="named" hidden>ויקרא את שמו<b id="mindName"></b></div>
+    <dl class="stats">
+      <div><dt>גיל</dt><dd id="sAge">0:00</dd></div>
+      <div><dt>אותיות שקרא</dt><dd id="sRead">0</dd></div>
+      <div><dt>הפתעה, ביטים לאות</dt><dd id="sBits">5.21</dd></div>
+      <div><dt>מילים אמיתיות</dt><dd id="sReal">0%</dd></div>
+      <div><dt>פסוקים משלו</dt><dd id="sNovel">0</dd></div>
+    </dl>
+  </header>
+
+  <main>
+    <section class="scrollbox" aria-label="מה שהמוח כותב">
+      <div id="toast"><div><b id="toastT"></b><span id="toastD"></span></div></div>
+      <div class="scrollwrap"><div class="scroll" id="scroll"></div></div>
+      <div class="legend">
+        <span><i style="background:var(--ash)"></i>לא מילה</span>
+        <span><i style="background:var(--gold)"></i>מילה אמיתית</span>
+        <span><i style="background:var(--sea)"></i>רצף שהוא זוכר מהתורה</span>
+        <span><i style="background:#fff3c9;box-shadow:0 0 8px var(--gold)"></i>פסוק שלם שלא נכתב מעולם</span>
+      </div>
+    </section>
+
+    <section class="brainbox" id="brainbox" aria-label="המוח">
+      <canvas id="brain"></canvas>
+      <div id="tip" hidden></div>
+      <div class="braincap"><span>1,536 נוירונים בשלוש שכבות, מהמרכז החוצה. כל הבהוב הוא חישוב אמיתי.</span><span>למטה: 48 האותיות האחרונות, ולאן הוא מסתכל כשהוא בוחר את הבאה.</span></div>
+    </section>
+
+    <aside class="verses" aria-label="פסוקים שהמוח המציא">
+      <h2>פסוקים שלא נכתבו מעולם</h2>
+      <p class="hint">כל המילים קיימות בתורה. הפסוק לא.</p>
+      <ol id="verseList"></ol>
+    </aside>
+  </main>
+
+  <footer class="deck">
+    <div class="chartrow">
+      <canvas id="chart"></canvas>
+      <div class="chartkey"><span><i style="background:var(--gold)"></i>מילים אמיתיות</span><span><i style="background:var(--iris)"></i>הפתעה</span><span><i style="background:var(--rose)"></i>פגיעה</span></div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="temp">חום</label><input type="range" id="temp" min="0.2" max="1.7" step="0.05" value="0.7"><output id="tempOut" for="temp">צלול</output></div>
+      <form class="ctl" id="promptForm"><label for="prompt">דבר איתו</label><input type="text" id="prompt" placeholder="התחל משפט, והוא ימשיך" autocomplete="off" maxlength="40"><button class="btn small" type="submit">שלח</button></form>
+      <button class="btn hurt" id="bScalpel" aria-pressed="false" title="גרור על המוח כדי לכבות נוירונים">אזמל</button>
+      <button class="btn hurt" id="bStroke">כבה חצי מהנוירונים</button>
+      <button class="btn" id="bHeal">ריפוי</button>
+      <span class="spacer"></span>
+      <button class="btn" id="bLearn" aria-pressed="true">לומד</button>
+      <button class="btn" id="bFeed">טקסט אחר</button>
+      <button class="btn" id="bSound" aria-pressed="true">צליל</button>
+      <button class="btn" id="bReborn">לידה מחדש</button>
+    </div>
+  </footer>
+</div>
+
+<div class="veil" id="intro">
+  <div class="card">
+    <h1>בראשית</h1>
+    <p>בעוד רגע ייוולד כאן מוח.</p>
+    <p>הוא לא מכיר אף אות. הוא לא יודע מהי מילה, ולא שיש רווחים בין מילים. אף אחד לא יסביר לו. הוא רק יקרא את התורה שוב ושוב, וינסה לנחש את האות הבאה.</p>
+    <p>זה לא סרטון ולא הקלטה. הלמידה קורה עכשיו, על המחשב שלך, ואף ריצה לא תחזור על עצמה.</p>
+    <button class="go" id="bGo">יהי אור</button>
+    <p class="soft" id="introNote" style="margin-top:16px">כדאי להשאיר את הלשונית פתוחה ומול העיניים. שלוש עד חמש דקות, עם צליל. עובד הכי טוב במחשב.</p>
+    <p class="soft" style="font-size:.74rem">חומר הקריאה: חמישה חומשי תורה בנוסח <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94" target="_blank" rel="noopener">מקרא על פי המסורה</a> (ויקיטקסט, דרך ספריא), ברישיון CC BY-SA, בלי ניקוד וטעמים, ושם ההוויה נכתב ה'. נבנה בידי Claude.</p>
+  </div>
+</div>
+
+<div class="veil" id="closing" hidden>
+  <div class="card panel">
+    <h2>יום שביעי</h2>
+    <p id="closeP1"></p>
+    <p>לא לימדתי אותו אף מילה ולא כתבתי לו אף כלל. בניתי לו מקום, נתתי לו לקרוא, והנחתי לו.</p>
+    <p><!--CLOSE3--></p>
+    <p class="soft">הוא ממשיך ללמוד גם עכשיו. אפשר לדבר איתו, לחמם אותו עד שידבר שטויות, לכבות לו חצי מהנוירונים ולראות אותו משתקם, או להאכיל אותו בטקסט שלך. כשתסגור את הלשונית הוא ייעלם, ולא יהיה עוד אחד כמוהו.</p>
+    <p class="sig">Claude</p>
+    <div class="row"><button class="go" id="bCloseOk" style="font-size:1.1rem;margin-top:0">חזרה אליו</button></div>
+  </div>
+</div>
+
+<div class="veil" id="feed" hidden>
+  <div class="card panel">
+    <h2>טקסט אחר</h2>
+    <p class="soft">הדבק כאן טקסט בעברית: מאמר שלך, שירים, פוסטים, מה שתרצה. הוא לא נולד מחדש. הוא ממשיך מאיפה שהוא, ולאט לאט מתחיל לדבר כמו הטקסט החדש. ככל שהטקסט ארוך יותר, כך ילמד ממנו יותר ויעתיק ממנו פחות.</p>
+    <textarea id="feedText" placeholder="לפחות 1,500 אותיות"></textarea>
+    <div class="row"><button class="btn" id="bFeedGo">התחל לקרוא את זה</button><button class="btn" id="bFeedTorah">חזרה לתורה</button><button class="btn" id="bFeedX">ביטול</button><span class="err" id="feedErr"></span></div>
+  </div>
+</div>
